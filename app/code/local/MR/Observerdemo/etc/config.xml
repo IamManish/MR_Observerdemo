@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <MR_Observerdemo>
+      <version>0.1.0</version>
+    </MR_Observerdemo>
+  </modules>
+  <global>
+    <helpers>
+      <observerdemo>
+        <class>MR_Observerdemo_Helper</class>
+      </observerdemo>
+    </helpers>
+	<models>
+	  <observerdemo>
+		<class>MR_Observerdemo_Model</class>
+		<resourceModel>observerdemo_mysql4</resourceModel>
+	  </observerdemo>
+	</models>
+    <events>
+	  <checkout_cart_product_add_after> <!-- identifier of the event we want to catch -->
+        <observers>
+          <checkout_cart_product_add_after_handler> <!-- identifier of the event handler -->
+            <type>singleton</type> <!-- class method call type; valid are model, object and singleton -->
+            <class>observerdemo/observer</class> <!-- observers class alias -->
+            <method>addtocartEvent</method>  <!-- observer's method to be called -->
+            <args></args> <!-- additional arguments passed to observer -->
+          </checkout_cart_product_add_after_handler>
+        </observers>
+      </checkout_cart_product_add_after>
+	  <review_save_before> <!-- identifier of the event we want to catch -->
+        <observers>
+          <review_save_before_handler> <!-- identifier of the event handler -->
+            <type>singleton</type> <!-- class method call type; valid are model, object and singleton -->
+            <class>observerdemo/observer</class> <!-- observers class alias -->
+            <method>autoApproveReview</method>  <!-- observer's method to be called -->
+            <args></args> <!-- additional arguments passed to observer -->
+          </review_save_before_handler>
+        </observers>
+      </review_save_before>
+    </events>
+  </global>
+</config> 
